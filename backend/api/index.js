@@ -28,15 +28,6 @@ app.listen(process.env.API_PORT, () =>
 //   res.send("Selamat datang di Sistem Presensi Shalat!");
 // });
 
-// // Edit student by ID
-// app.put("/api/v1/students/:id", async (req, res) => {
-//   await pool.query(
-//     "UPDATE students SET name = $1, generation = $2 WHERE id = $3",
-//     [req.body.name, req.body.generation, req.params.id]
-//   );
-//   res.send("Mahasiswa berhasil diedit.");
-// });
-
 // // Set present by ID
 // app.put("/api/v1/students/:id/present", async (req, res) => {
 //   await pool.query("UPDATE students SET present = $1 WHERE id = $2", [

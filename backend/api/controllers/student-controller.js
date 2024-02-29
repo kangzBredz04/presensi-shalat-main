@@ -34,3 +34,17 @@ export const getStudentById = async (req, res) => {
     res.status(500).json({ msg: error.message });
   }
 };
+
+export const updateStudent = async (req, res) => {
+  try {
+    await pool.query(
+      "UPDATE students SET name = $1, generation = $2 WHERE id = $3",
+      [req.body.name, req.body.generation, req.params.id]
+    );
+    res.status(200).json({
+      message: "Mahasiswa berhasil ditambahkan.",
+    });
+  } catch (error) {
+    res.status(500).json({ msg: error.message });
+  }
+};
