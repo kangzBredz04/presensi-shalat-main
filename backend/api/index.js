@@ -1,14 +1,15 @@
 import express from "express";
 import cors from "cors";
 import { pool } from "../db.js";
+import argon2 from "argon2";
 
 const app = express();
 app.use(express.json());
-app.use(
-  cors({
-    origin: "https://presensi-shalat.vercel.app",
-  })
-);
+// app.use(
+//   cors({
+//     origin: "localhost:5173",
+//   })
+// );
 
 // Hello world
 app.get("/api/v1", async (_req, res) => {
@@ -63,6 +64,37 @@ app.put("/api/v1/students/:id/present", async (req, res) => {
 app.delete("/api/v1/students/:id", async (req, res) => {
   await pool.query("DELETE FROM students WHERE id = $1", [req.params.id]);
   res.send("Mahasiswa berhasil dihapus.");
+});
+
+// async function createUser(username, password) {
+//   // Hash password with Argon2
+//   const hashedPassword = await argon2.hash(password);
+
+//   // Insert user into database
+//   const result = await pool.query(
+//     "INSERT INTO users (username, password) VALUES ($1, $2) RETURNING *",
+//     [username, hashedPassword]
+//   );
+//   return result.rows[0];
+// }
+
+// Add user
+app.post("/api/v1/register", async (req, res) => {
+  const { username, password } = req.body;
+  try {
+    const hashedPassword = await argon2.hash(password);
+    const result = await pool.query(
+      "INSERT INTO users (username, password) VALUES ($1, $2) RETURNING *",
+      [username, hashedPassword]
+    );
+    // Send successful response
+    res
+      .status(201)
+      .json({ message: "Registration successful", data: result.rows[0] });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "An error occurred during registration" });
+  }
 });
 
 app.listen(3000, () => console.log("Server berhasil dijalankan."));
