@@ -128,10 +128,11 @@ app.post("/api/v1/login", async (req, res) => {
       if (!isPasswordValid) {
         return res.status(401).json({ error: "Incorrect password" });
       } else {
-        // Send successful response
+        const token = jwt.sign(result.rows[0], process.env.SECRET_KEY);
+        res.cookie("auth_token", token, { httpOnly: true });
         res.status(200).json({
           message: "Login successful",
-          token: jwt.sign(result.rows[0], process.env.SECRET_KEY),
+          token,
           user: result.rows[0],
         });
       }
