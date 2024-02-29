@@ -28,26 +28,6 @@ app.listen(process.env.API_PORT, () =>
 //   res.send("Selamat datang di Sistem Presensi Shalat!");
 // });
 
-// // Add student
-// app.post("/api/v1/students", async (req, res) => {
-//   const result = await pool.query(
-//     "INSERT INTO students (name, generation) VALUES ($1, $2) RETURNING *",
-//     [req.body.name, req.body.generation]
-//   );
-//   res.json({
-//     student: result.rows[0],
-//     message: "Mahasiswa berhasil ditambahkan.",
-//   });
-// });
-
-// // Get student by ID
-// app.get("/api/v1/students/:id", async (req, res) => {
-//   const result = await pool.query("SELECT * FROM students WHERE id = $1", [
-//     req.params.id,
-//   ]);
-//   res.json(result.rows[0]);
-// });
-
 // // Edit student by ID
 // app.put("/api/v1/students/:id", async (req, res) => {
 //   await pool.query(
