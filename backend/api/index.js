@@ -28,12 +28,6 @@ app.listen(process.env.API_PORT, () =>
 //   res.send("Selamat datang di Sistem Presensi Shalat!");
 // });
 
-// // Get all students
-// app.get("/api/v1/students", async (_req, res) => {
-//   const result = await pool.query("SELECT * FROM students");
-//   res.json(result.rows);
-// });
-
 // // Add student
 // app.post("/api/v1/students", async (req, res) => {
 //   const result = await pool.query(
