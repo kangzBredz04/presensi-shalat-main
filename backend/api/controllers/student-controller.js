@@ -55,7 +55,11 @@ export const setPresentById = async (req, res) => {
       req.body.present,
       req.params.id,
     ]);
-    res.json(req.body.present);
+    res.json(
+      req.body.present === true
+        ? { msg: "Mahasiswa hadir" }
+        : { msg: "Mahasiswa tidak hadir" }
+    );
   } catch (error) {
     res.status(500).json({ msg: error.message });
   }

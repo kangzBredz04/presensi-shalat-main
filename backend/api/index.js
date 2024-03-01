@@ -2,9 +2,9 @@ import express from "express";
 import "dotenv/config";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-// import argon2 from "argon2";
-// import jwt from "jsonwebtoken";
+
 import StudentRoute from "./routes/student-route.js";
+import AuthRoute from "./routes/auth-route.js";
 
 const app = express();
 app.use(
@@ -18,52 +18,11 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use("/student", StudentRoute);
+app.use("/auth", AuthRoute);
 
 app.listen(process.env.API_PORT, () =>
   console.log("Server berhasil dijalankan.")
 );
-
-// // Hello world
-// app.get("/api/v1", async (_req, res) => {
-//   res.send("Selamat datang di Sistem Presensi Shalat!");
-// });
-
-// // async function createUser(username, password) {
-// //   // Hash password with Argon2
-// //   const hashedPassword = await argon2.hash(password);
-
-// //   // Insert user into database
-// //   const result = await pool.query(
-// //     "INSERT INTO users (username, password) VALUES ($1, $2) RETURNING *",
-// //     [username, hashedPassword]
-// //   );
-// //   return result.rows[0];
-// // }
-
-// // Add user
-// app.post("/api/v1/register", async (req, res) => {
-//   const { username, password } = req.body;
-//   // Validate input
-//   if (!username || !password) {
-//     return res
-//       .status(400)
-//       .json({ error: "Username and password are required" });
-//   }
-
-//   try {
-//     const hashedPassword = await argon2.hash(password);
-//     const result = await pool.query(
-//       "INSERT INTO users (username, password) VALUES ($1, $2) RETURNING *",
-//       [username, hashedPassword]
-//     );
-//     res
-//       .status(201)
-//       .json({ message: "Registration successful", data: result.rows[0] });
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ error: "An error occurred during registration" });
-//   }
-// });
 
 // // Login user
 // app.post("/api/v1/login", async (req, res) => {
