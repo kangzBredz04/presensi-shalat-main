@@ -27,7 +27,7 @@ export const login = async (req, res) => {
       username,
     ]);
     if (!result.rows[0]) {
-      return res.status(200).json({ error: "Username not found" });
+      return res.status(200).json({ error: "User tidak ditemukan !!!" });
     } else {
       // Verifikasi password
       const isPasswordValid = await argon2.verify(
@@ -35,7 +35,7 @@ export const login = async (req, res) => {
         password
       );
       if (!isPasswordValid) {
-        return res.status(401).json({ error: "Incorrect password" });
+        return res.status(401).json({ error: "Password salah" });
       } else {
         const token = jwt.sign(result.rows[0], process.env.SECRET_KEY);
         res.cookie("auth_token", token, { httpOnly: true });
