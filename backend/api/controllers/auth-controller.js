@@ -57,7 +57,7 @@ export const login = async (req, res) => {
 export const logout = async (_req, res) => {
   await res.setHeader("Cache-Control", "no-store");
   await res.clearCookie("token");
-  res.send("Logout Berhasil");
+  res.status(200).json({ msg: "Logout berhasil" });
 };
 
 export const getDataLogin = async (req, res) => {

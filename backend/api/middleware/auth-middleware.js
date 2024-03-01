@@ -14,6 +14,6 @@ export const verifyUserToken = async (req, res, next) => {
     }
   } else {
     res.status(401);
-    res.send("Token belum diisi.");
+    res.send("Tidak ada token.");
   }
 };
