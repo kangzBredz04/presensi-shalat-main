@@ -40,7 +40,6 @@ export const login = async (req, res) => {
         const token = jwt.sign(result.rows[0], process.env.SECRET_KEY);
         res.cookie("token", token, {
           httpOnly: true,
-          secure: true,
         });
         res.status(200).json({
           message: "Login successful",
@@ -55,9 +54,19 @@ export const login = async (req, res) => {
   }
 };
 
+export const logout = async (_req, res) => {
+  await res.setHeader("Cache-Control", "no-store");
+  await res.clearCookie("token");
+  res.send("Logout Berhasil");
+};
+
 export const getDataLogin = async (req, res) => {
-  return await res.json({
-    status: "Berhasil",
-    data: `${req.username} sedang login`,
-  });
+  try {
+    return res.json({
+      status: "Berhasil",
+      data: `${req.user.username} sedang login`,
+    });
+  } catch (error) {
+    res.status(500).json({ error: "An error occurred during login" });
+  }
 };

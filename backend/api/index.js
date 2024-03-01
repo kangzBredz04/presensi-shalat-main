@@ -5,6 +5,7 @@ import cors from "cors";
 
 import StudentRoute from "./routes/student-route.js";
 import AuthRoute from "./routes/auth-route.js";
+import { verifyUserToken } from "./middleware/auth-middleware.js";
 
 const app = express();
 app.use(
@@ -24,11 +25,11 @@ app.listen(process.env.API_PORT, () =>
   console.log("Server berhasil dijalankan.")
 );
 
-// // middleware otentikasi
-// // app.use((req, res, next) => {
-// //   if (req.headers.authorization) {
-// //     console.log(req.headers.authorization);
-// //   } else {
-// //     res.status(401).send("Token belum ada");
-// //   }
-// // });
+// middleware otentikasi
+// app.use((req, res, next) => {
+//   if (req.headers.authorization) {
+//     console.log(req.headers.authorization);
+//   } else {
+//     res.status(401).send("Token belum ada");
+//   }
+// });

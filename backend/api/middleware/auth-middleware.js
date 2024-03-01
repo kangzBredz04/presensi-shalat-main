@@ -1,19 +1,19 @@
 import jwt from "jsonwebtoken";
+import "dotenv/config";
 
 export const verifyUserToken = async (req, res, next) => {
-  const token = req.cookies.token;
-  console.log(token);
-  if (!token) {
-    return res.json({ Error: "Anda belum diautentikasi" });
+  if (req.headers.cookie) {
+    const token = req.headers.cookie.split("=")[1];
+    try {
+      const user = jwt.verify(token, process.env.SECRET_KEY);
+      req.user = user;
+      next();
+    } catch {
+      res.status(401);
+      res.send("Token salah.");
+    }
   } else {
-    jwt.verify(token, process.env.JWT_SECRET_KEY, (err, decoded) => {
-      if (err) {
-        return res.json({ Error: "Token tidak ada" });
-      } else {
-        req.email = decoded.email;
-        req.name = decoded.name;
-        next();
-      }
-    });
+    res.status(401);
+    res.send("Token belum diisi.");
   }
 };
