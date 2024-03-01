@@ -38,7 +38,10 @@ export const login = async (req, res) => {
         return res.status(401).json({ error: "Password salah" });
       } else {
         const token = jwt.sign(result.rows[0], process.env.SECRET_KEY);
-        res.cookie("auth_token", token, { httpOnly: true });
+        res.cookie("token", token, {
+          httpOnly: true,
+          secure: true,
+        });
         res.status(200).json({
           message: "Login successful",
           token,
@@ -50,4 +53,11 @@ export const login = async (req, res) => {
     console.error(error);
     res.status(500).json({ error: "An error occurred during login" });
   }
+};
+
+export const getDataLogin = async (req, res) => {
+  return await res.json({
+    status: "Berhasil",
+    data: `${req.username} sedang login`,
+  });
 };
