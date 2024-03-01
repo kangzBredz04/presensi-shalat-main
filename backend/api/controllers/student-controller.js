@@ -48,3 +48,24 @@ export const updateStudent = async (req, res) => {
     res.status(500).json({ msg: error.message });
   }
 };
+
+export const setPresentById = async (req, res) => {
+  try {
+    await pool.query("UPDATE students SET present = $1 WHERE id = $2", [
+      req.body.present,
+      req.params.id,
+    ]);
+    res.json(req.body.present);
+  } catch (error) {
+    res.status(500).json({ msg: error.message });
+  }
+};
+
+export const deleteStudent = async (req, res) => {
+  try {
+    await pool.query("DELETE FROM students WHERE id = $1", [req.params.id]);
+    res.send("Mahasiswa berhasil dihapus.");
+  } catch (error) {
+    res.status(500).json({ msg: error.message });
+  }
+};

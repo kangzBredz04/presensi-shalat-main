@@ -28,21 +28,6 @@ app.listen(process.env.API_PORT, () =>
 //   res.send("Selamat datang di Sistem Presensi Shalat!");
 // });
 
-// // Set present by ID
-// app.put("/api/v1/students/:id/present", async (req, res) => {
-//   await pool.query("UPDATE students SET present = $1 WHERE id = $2", [
-//     req.body.present,
-//     req.params.id,
-//   ]);
-//   res.json(req.body.present);
-// });
-
-// // Delete student by ID
-// app.delete("/api/v1/students/:id", async (req, res) => {
-//   await pool.query("DELETE FROM students WHERE id = $1", [req.params.id]);
-//   res.send("Mahasiswa berhasil dihapus.");
-// });
-
 // // async function createUser(username, password) {
 // //   // Hash password with Argon2
 // //   const hashedPassword = await argon2.hash(password);
