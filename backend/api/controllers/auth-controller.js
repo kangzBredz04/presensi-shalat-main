@@ -31,8 +31,8 @@ export const login = async (req, res) => {
     } else {
       // Verifikasi password
       const isPasswordValid = await argon2.verify(
-        result.rows[0].password,
-        password
+        result.rows[0].password, // data pass hash
+        password // 123
       );
       if (!isPasswordValid) {
         return res.status(401).json({ error: "Password salah" });
