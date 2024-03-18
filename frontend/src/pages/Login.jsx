@@ -39,7 +39,7 @@ export default function Login() {
     <div className=" bg-gray-700 flex flex-col justify-center py-5 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-100">
-          Log in to your account
+          Login to your account
         </h2>
       </div>
 
@@ -104,7 +104,7 @@ export default function Login() {
                 type="submit"
                 className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
               >
-                Log in
+                Login
               </button>
             </div>
           </form>

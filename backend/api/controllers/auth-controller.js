@@ -64,7 +64,8 @@ export const getDataLogin = async (req, res) => {
   try {
     return res.json({
       status: "Berhasil",
-      data: `${req.user.username} sedang login`,
+      msg: `${req.user.username} sedang login`,
+      data: req.user,
     });
   } catch (error) {
     res.status(500).json({ error: "An error occurred during login" });
