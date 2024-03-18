@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { api } from "../utils.js";
 
 export default function Login() {
   const [login, setLogin] = useState({
@@ -16,18 +17,20 @@ export default function Login() {
   }
 
   const navigate = useNavigate();
+
   function handleSubmit(e) {
     e.preventDefault();
-    fetch("http://localhost:3000/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(login),
-      credentials: "include",
-    }).then((res) => {
-      console.log(res);
-      if (res.ok) {
+    // fetch("http://localhost:3000/auth/login", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-type": "application/json",
+    //   },
+    //   body: JSON.stringify(login),
+    //   credentials: "include",
+    // })
+    api.post("/auth/login", login).then((res) => {
+      // console.log(res.token);
+      if (res.token) {
         alert("OK");
         navigate("/");
       } else {

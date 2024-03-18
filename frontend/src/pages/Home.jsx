@@ -1,18 +1,18 @@
-import { useContext, useState } from "react";
-import { Navigate, useOutletContext } from "react-router-dom";
-import { DataContext } from "../App";
+import { Navigate } from "react-router-dom";
+import { UserContext } from "../App";
+import { useContext } from "react";
 
 export default function Home() {
-  const user = useOutletContext()[0];
+  const { user } = useContext(UserContext);
   console.log(user);
-  if (user) {
-    return (
-      <div>
-        {/* <h1>{user[0].data}</h1> */}
-        <h1>Home</h1>
-      </div>
-    );
-  } else {
-    return <Navigate to="/login" />;
-  }
+  // if (user.data) {
+  //   return (
+  //     <div>
+  //       <h1>{user?.data?.username}</h1>
+  //       <h1>Home</h1>
+  //     </div>
+  //   );
+  // } else {
+  //   return <Navigate to="/login" />;
+  // }
 }
