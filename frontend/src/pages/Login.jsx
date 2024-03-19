@@ -20,18 +20,10 @@ export default function Login() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    // fetch("http://localhost:3000/auth/login", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-type": "application/json",
-    //   },
-    //   body: JSON.stringify(login),
-    //   credentials: "include",
-    // })
     api.post("/auth/login", login).then((res) => {
       // console.log(res.token);
       if (res.token) {
-        alert("OK");
+        alert("Berhasil Login");
         navigate("/");
       } else {
         alert("Email atau Password Salah !!!");

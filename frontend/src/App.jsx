@@ -7,7 +7,7 @@ import { api } from "./utils.js";
 export const UserContext = createContext();
 
 export default function App() {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState();
 
   useEffect(() => {
     api
@@ -15,7 +15,6 @@ export default function App() {
       .then((me) => {
         if (me) {
           setUser(me);
-          console.log(me);
         } else {
           console.log("User tidak ada !!!");
           setUser(null);
@@ -23,6 +22,9 @@ export default function App() {
       })
       .catch((err) => console.log(err));
   }, []);
+
+  // const data = useLocation();
+  // console.log(data.state);
 
   return (
     <UserContext.Provider value={user}>

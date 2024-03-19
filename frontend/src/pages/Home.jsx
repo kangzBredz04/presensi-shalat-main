@@ -3,16 +3,18 @@ import { UserContext } from "../App";
 import { useContext } from "react";
 
 export default function Home() {
-  const { user } = useContext(UserContext);
+  const user = useContext(UserContext);
   console.log(user);
-  // if (user.data) {
-  //   return (
-  //     <div>
-  //       <h1>{user?.data?.username}</h1>
-  //       <h1>Home</h1>
-  //     </div>
-  //   );
-  // } else {
-  //   return <Navigate to="/login" />;
-  // }
+  if (user) {
+    console.log("masuk");
+    return (
+      <div>
+        <h1>{user.data?.username}</h1>
+        <h1>Home</h1>
+      </div>
+    );
+  } else {
+    console.log("Gagal");
+    return <Navigate to="/login" />;
+  }
 }
