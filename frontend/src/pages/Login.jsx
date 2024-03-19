@@ -18,35 +18,38 @@ export default function Login() {
 
   const navigate = useNavigate();
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    api.post("/auth/login", login).then((res) => {
-      console.log(res.token);
-      if (res.token) {
-        alert("Berhasil Login");
-        navigate("/");
-      } else {
-        alert("Email atau Password Salah !!!");
-      }
-    });
-  }
-
   // function handleSubmit(e) {
   //   e.preventDefault();
-  //   fetch("http://localhost:3000/auth/get-data-login")
-  //     .then((response) => {
-  //       if (!response.ok) {
-  //         throw new Error("Gagal mengatur cookie");
-  //       }
-  //       return response.text();
-  //     })
-  //     .then((data) => {
-  //       console.log(data); // Output: Cookie berhasil diatur
-  //     })
-  //     .catch((error) => {
-  //       console.error("Ada kesalahan:", error);
-  //     });
+  //   api.post("/auth/login", login).then((res) => {
+  //     console.log(res.token);
+  //     if (res.token) {
+  //       alert("Berhasil Login");
+  //       navigate("/");
+  //     } else {
+  //       alert("Email atau Password Salah !!!");
+  //     }
+  //   });
   // }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    api
+      .post("/auth/login", login)
+      .then((response) => {
+        if (!response.token) {
+          throw new Error("Gagal login");
+        }
+        return console.log(response.token);
+      })
+      .then((data) => {
+        console.log(data); // Output: Login berhasil
+        window.location.reload(); // Reload halaman sebelum pindah ke halaman baru
+        window.location.href = "/"; // Pindah ke halaman home setelah reload
+      })
+      .catch((error) => {
+        console.error("Ada kesalahan:", error);
+      });
+  }
 
   return (
     <div className=" bg-gray-700 flex flex-col justify-center py-5 sm:px-6 lg:px-8">

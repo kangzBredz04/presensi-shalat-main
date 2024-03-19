@@ -1,9 +1,14 @@
 import { Link, Navigate } from "react-router-dom";
 import { UserContext } from "../App";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 export default function Home() {
   const user = useContext(UserContext);
+
+  // useEffect(() => {
+  console.log(user);
+  // }, [user]);
+
   if (user) {
     return (
       <div>
