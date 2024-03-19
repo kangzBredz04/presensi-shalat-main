@@ -21,7 +21,7 @@ export default function Login() {
   function handleSubmit(e) {
     e.preventDefault();
     api.post("/auth/login", login).then((res) => {
-      // console.log(res.token);
+      console.log(res.token);
       if (res.token) {
         alert("Berhasil Login");
         navigate("/");
@@ -30,6 +30,24 @@ export default function Login() {
       }
     });
   }
+
+  // function handleSubmit(e) {
+  //   e.preventDefault();
+  //   fetch("http://localhost:3000/auth/get-data-login")
+  //     .then((response) => {
+  //       if (!response.ok) {
+  //         throw new Error("Gagal mengatur cookie");
+  //       }
+  //       return response.text();
+  //     })
+  //     .then((data) => {
+  //       console.log(data); // Output: Cookie berhasil diatur
+  //     })
+  //     .catch((error) => {
+  //       console.error("Ada kesalahan:", error);
+  //     });
+  // }
+
   return (
     <div className=" bg-gray-700 flex flex-col justify-center py-5 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
